@@ -20,12 +20,6 @@ namespace PingPong
             Launch();
         }
 
-        // Update is called once per frame
-        private void Update()
-        {
-
-        }
-
         public void Launch()
         {
             float x = Random.Range(0, 2) == 0 ? -1 : 1;
