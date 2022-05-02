@@ -12,9 +12,9 @@ namespace PingPong
         [SerializeField] PlayersEnum _player;
         [SerializeField] UnityEvent<Collider2D, PlayersEnum> _onTriggerEnter;
 
-        private void OnTriggerEnter2D(Collider2D col)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
-            _onTriggerEnter.Invoke(col, _player);
+            _onTriggerEnter.Invoke(collider, _player);
         }
 
         private void Reset()

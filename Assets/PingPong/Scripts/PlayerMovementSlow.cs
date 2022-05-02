@@ -5,7 +5,7 @@ using UnityEngine;
 namespace PingPong
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Player : MonoBehaviour
+    public class PlayerMovementSlow : Movement
     {
         [SerializeField] private float _speed = 1;
         private Rigidbody2D _rb;
@@ -17,8 +17,7 @@ namespace PingPong
 
         private void Update()
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, Input.GetAxis("Vertical") * _speed);
+            _rb.MovePosition(new Vector2(transform.position.x + Input.GetAxis("Mouse X") * _speed, transform.position.y + Input.GetAxis("Mouse Y") * _speed));
         }
     }
 }
-

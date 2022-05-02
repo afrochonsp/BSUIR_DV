@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09c2b497b055314780573fae553fcd1, type: 3}
+  m_Name: Chase NPC State
+  m_EditorClassIdentifier: 
+  _state: {fileID: 11500000, guid: 61e1828e3019c1b4eac295f7bc7a1475, type: 3}
+  _nextStates:
+  - stateTree: {fileID: 11400000, guid: cb449d842611d074d8152e6b6359de9c, type: 2}
+    _conditions:
+    - {fileID: 11500000, guid: dc5366ff9c248344399c544ef0d5bb37, type: 3}
