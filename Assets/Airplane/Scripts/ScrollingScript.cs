@@ -22,6 +22,14 @@ namespace Airplane
         // 2 – Список детей с рендерером
         private List<Transform> _backgroundPart;
 
+        public void StopIfLinked()
+        {
+            if(_isLinkedToCamera)
+            {
+                _speed = 0;
+            }
+        }
+
         void Start()
         {
             if (_isLooping)

@@ -32,6 +32,7 @@ namespace Airplane
             if (shoot && TryGetComponent(out WeaponScript weapon))
             {
                 weapon.Attack(false);
+                SoundEffectsHelper.Instance.MakePlayerShotSound();
             }
 
             // 6 Ц ”бедитьс€, что игрок не выходит за рамки кадра
@@ -82,6 +83,11 @@ namespace Airplane
             {
                 playerHealth.Damage(1);
             }
+        }
+        
+        private void OnDestroy()
+        {
+            GameOverScript.Instance.ShowUI();
         }
     }
 }

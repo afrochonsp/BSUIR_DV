@@ -44,6 +44,7 @@ namespace Airplane
                     if (weapon != null && weapon.enabled && weapon.CanAttack)
                     {
                         weapon.Attack(true);
+                        SoundEffectsHelper.Instance.MakeEnemyShotSound();
                     }
                 }
 
