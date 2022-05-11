@@ -17,7 +17,7 @@ namespace Memory
         private Vector3 _defaultScale;
         private Color _defaultColor;
 
-        private void Awake()
+        private void Start()
         {
             _sprite = GetComponent<SpriteRenderer>();
             _defaultScale = transform.localScale;
@@ -42,7 +42,7 @@ namespace Memory
         public void OnMouseUp()
         {
             transform.localScale = _defaultScale;
-            _targetObject?.SendMessage(_targetMethod);
+            _targetObject.SendMessage(_targetMethod);
         }
     }
 }

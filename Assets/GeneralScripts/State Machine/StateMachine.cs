@@ -6,7 +6,7 @@ using System;
 
 public abstract class StateMachine : MonoBehaviour
 {
-    [SerializeField] StateTree StartState;
+    [SerializeField] StateObject StartState;
     public State CurrentState { get; private set; }
     public List<NextState> NextStates { get; private set; }
 
@@ -39,8 +39,8 @@ public abstract class StateMachine : MonoBehaviour
             {
                 if (condition.Check())
                 {
-                    ChangeState(nextState.stateTree.State);
-                    NextStates = nextState.stateTree._nextStates;
+                    ChangeState(nextState.stateObject.State);
+                    NextStates = nextState.stateObject._nextStates;
                     foreach (var _nextState in NextStates)
                     {
                         _nextState.EnterConditions();

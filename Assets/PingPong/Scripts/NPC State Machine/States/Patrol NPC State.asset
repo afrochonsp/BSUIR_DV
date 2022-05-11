@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: {fileID: 11500000, guid: 05a5f3370542179409b0bc4e4699a05f, type: 3}
   _nextStates:
-  - stateTree: {fileID: 11400000, guid: f7ed0ff9c687b4d48b3881a8c53350a7, type: 2}
+  - stateObject: {fileID: 11400000, guid: f7ed0ff9c687b4d48b3881a8c53350a7, type: 2}
     _conditions:
     - {fileID: 11500000, guid: 9e2fa7eaf10c3af4397a6867fd4951d9, type: 3}

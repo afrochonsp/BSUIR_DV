@@ -9,7 +9,7 @@ namespace PingPong
     {
         private Rigidbody2D _rb;
 
-        private void Awake()
+        private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
         }

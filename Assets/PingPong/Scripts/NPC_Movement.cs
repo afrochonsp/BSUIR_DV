@@ -19,21 +19,20 @@ namespace PingPong
         public Vector2 TargetPosition { get; set; }
         private Vector2 _currentVelocity;
 
-        private void Awake()
+        private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
         }
 
         private void Update()
         {
-            //if(Vector2.Distance(transform.position, TargetPosition) > 0.5)
-            if(MoveType == MoveTypeEnum.Smooth)
+            if (MoveType == MoveTypeEnum.Smooth)
             {
                 _rb.MovePosition(Vector2.SmoothDamp(transform.position, TargetPosition, ref _currentVelocity, 1 / _speed));
             }
             else
             {
-                _rb.MovePosition(Vector2.MoveTowards(transform.position, TargetPosition, _speed * Time.deltaTime * _speedHardMylty));
+                _rb.MovePosition(Vector2.MoveTowards(transform.position, TargetPosition, _speed * _speedHardMylty));
             }
         }
 

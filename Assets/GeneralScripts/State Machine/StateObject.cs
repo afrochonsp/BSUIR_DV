@@ -8,7 +8,7 @@ using UnityEditor;
 [Serializable]
 public class NextState
 {
-    public StateTree stateTree;
+    public StateObject stateObject;
     [SerializeField] public List<MonoScript> _conditions;
     public List<Condition> Conditions { get; private set; } = new List<Condition>();
 
@@ -24,11 +24,11 @@ public class NextState
         inited = true;
         foreach (var conditionMono in _conditions)
         {
-            Condition condition = CreateInstance<Condition>(conditionMono.GetClass());
+            Condition condition = (Condition)Activator.CreateInstance(conditionMono.GetClass());
             condition._stateMachine = stateMachine;
             Conditions.Add(condition);
         }
-        stateTree.Init(stateMachine);
+        stateObject.Init(stateMachine);
     }
 
     public void EnterConditions()
@@ -38,40 +38,23 @@ public class NextState
             condition.EnterCondition();
         }
     }
-
-    T CreateInstance<T>(Type type, params object[] paramArray)
-    {
-        return (T)Activator.CreateInstance(type, args: paramArray);
-    }
 }
 
-[CreateAssetMenu(fileName = "New State Tree", menuName = "State Tree", order = 51)]
-public class StateTree : ScriptableObject
+[CreateAssetMenu(fileName = "New State Object", menuName = "State Object", order = 51)]
+public class StateObject : ScriptableObject
 {
     [Tooltip("Namespace.Type")]
     [SerializeField] private MonoScript _state;
     public State State { get; private set; }
     public List<NextState> _nextStates;
 
-    public State GetStateFromString(string typeName, StateMachine stateMachine)
-    {
-        Type type = Type.GetType(typeName);
-        State state = (State)Activator.CreateInstance(type, stateMachine);
-        return state;
-    }
-
     public void Init(StateMachine stateMachine)
     {
-        State = CreateInstance<State>(_state.GetClass());
+        State = (State)Activator.CreateInstance(_state.GetClass());
         State._stateMachine = stateMachine;
         foreach (var nextState in _nextStates)
         {
             nextState.Init(stateMachine);
         }
-    }
-
-    T CreateInstance<T>(Type type, params object[] paramArray)
-    {
-        return (T)Activator.CreateInstance(type, args: paramArray);
     }
 }

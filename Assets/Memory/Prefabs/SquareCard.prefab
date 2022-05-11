@@ -205,5 +205,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0eed8455807c8f429c34dd4cd774fae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 0}
+  _flipSpeed: 0.25
   _back: {fileID: 5590142314669476080}

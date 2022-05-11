@@ -10,7 +10,7 @@ namespace PingPong
         [SerializeField] private float _speed = 1;
         private Rigidbody2D _rb;
 
-        private void Awake()
+        private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
         }

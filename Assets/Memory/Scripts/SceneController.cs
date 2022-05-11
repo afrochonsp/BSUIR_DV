@@ -11,7 +11,7 @@ namespace Memory
         [SerializeField] private Sprite[] _images;
         [SerializeField] private TextMesh _scoreLabel;
 
-        public static SceneController instance = null;
+        public static SceneController instance;
 
         private const int _gridRows = 2;
         private const int _gridCols = 4;
@@ -35,6 +35,7 @@ namespace Memory
                 Destroy(gameObject);
             }
         }
+
         public void CardRevealed(Card card)
         {
             if (_firstRevealed == null)
@@ -118,6 +119,11 @@ namespace Memory
         public void Restart()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        private void OnDestroy()
+        {
+            StopAllCoroutines();
         }
     }
 }

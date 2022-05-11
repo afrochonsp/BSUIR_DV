@@ -12,14 +12,9 @@ namespace PingPong
         [SerializeField] private float _pushForce = 50;
         private Rigidbody2D _rb;
 
-        private void Awake()
-        {
-            _rb = GetComponent<Rigidbody2D>();
-        }
-
         private void Start()
         {
-
+            _rb = GetComponent<Rigidbody2D>();
         }
 
         private void FixedUpdate()
