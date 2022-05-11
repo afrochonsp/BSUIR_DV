@@ -7,14 +7,11 @@ namespace Airplane
     public class BossScript : MonoBehaviour
     {
         private bool hasSpawn;
-
-        // Параметры компонентов
         private MoveScript _moveScript;
         private WeaponScript[] _weapons;
         private Animator _animator;
         private SpriteRenderer[] _renderers;
 
-        // Поведение босса (не совсем AI)
         [SerializeField] private float _minAttackCooldown = 0.5f;
         [SerializeField] private float _maxAttackCooldown = 2f;
 
@@ -22,7 +19,7 @@ namespace Airplane
         private bool _isAttacking;
         private Vector2 _positionTarget;
 
-        void Awake()
+        private void Awake()
         {
             _weapons = GetComponentsInChildren<WeaponScript>();
             _moveScript = GetComponent<MoveScript>();
@@ -30,7 +27,7 @@ namespace Airplane
             _renderers = GetComponentsInChildren<SpriteRenderer>();
         }
 
-        void Start()
+        private void Start()
         {
             hasSpawn = false;
             GetComponent<Collider2D>().enabled = false;
@@ -43,12 +40,10 @@ namespace Airplane
             _aiCooldown = _maxAttackCooldown;
         }
 
-        void Update()
+        private void Update()
         {
             if (hasSpawn == false)
             {
-                // Для простоты проверим только первый рендерер
-                // Но мы не знаем, если это тело, и глаз или рот ...
                 if (_renderers[0].isVisible)
                 {
                     Spawn();
@@ -80,26 +75,20 @@ namespace Airplane
                 }
                 else
                 {
-                    // Выбрать цель?
                     if (_positionTarget == Vector2.zero)
                     {
-                        // Получить точку на экране, преобразовать ее в цель в игровом мире
                         Vector2 randomPoint = new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f));
 
                         _positionTarget = Camera.main.ViewportToWorldPoint(randomPoint);
                     }
 
-                    // У нас есть цель? Если да, найти новую
                     if (GetComponent<Collider2D>().OverlapPoint(_positionTarget))
                     {
-                        // Сбросить, выбрать в следующем кадре
                         _positionTarget = Vector2.zero;
                     }
 
-                    // Идти к точке
                     Vector3 direction = ((Vector3)_positionTarget - transform.position);
 
-                    // Помните об использовании скрипта движения
                     _moveScript.Direction = Vector3.Normalize(direction);
                 }
             }
@@ -115,16 +104,14 @@ namespace Airplane
                 weapon.enabled = true;
             }
 
-            // Остановить основной скроллинг
             foreach (ScrollingScript scrolling in FindObjectsOfType<ScrollingScript>())
             {
                 scrolling.StopIfLinked();
             }
         }
 
-        void OnTriggerEnter2D(Collider2D otherCollider2D)
+        private void OnTriggerEnter2D(Collider2D otherCollider2D)
         {
-            // В случае попадания изменить анимацию
             if (otherCollider2D.TryGetComponent(out ShotScript shot))
             {
                 if (shot.IsEnemyShot == false)
@@ -137,9 +124,8 @@ namespace Airplane
             }
         }
 
-        void OnDrawGizmos()
+        private void OnDrawGizmos()
         {
-            // Можно отобразить отладочную информацию в вашей сцене с Гизмо
             if (hasSpawn && _isAttacking == false)
             {
                 Gizmos.DrawSphere(_positionTarget, 0.25f);

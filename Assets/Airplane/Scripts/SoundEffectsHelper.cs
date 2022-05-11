@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class SoundEffectsHelper : MonoBehaviour
 {
-
-    // Синглтон
     public static SoundEffectsHelper Instance;
 
     [SerializeField] private AudioClip _explosionSound;
     [SerializeField] private AudioClip _playerShotSound;
     [SerializeField] private AudioClip _enemyShotSound;
 
-    void Awake()
+    private void Awake()
     {
         if (Instance != null)
         {

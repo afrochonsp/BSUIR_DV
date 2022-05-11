@@ -10,13 +10,13 @@ namespace Airplane
         private MoveScript _moveScript;
         private WeaponScript[] _weapons;
 
-        void Awake()
+        private void Awake()
         {
             _weapons = GetComponentsInChildren<WeaponScript>();
             _moveScript = GetComponent<MoveScript>();
         }
 
-        void Start()
+        private void Start()
         {
             GetComponent<Collider2D>().enabled = false;
             _moveScript.enabled = false;
@@ -26,9 +26,8 @@ namespace Airplane
             }
         }
 
-        void Update()
+        private void Update()
         {
-            // 2 - Проверить, начался ли спавн врагов.
             if (_hasSpawn == false)
             {
                 if (GetComponent<Renderer>().isVisible)
@@ -38,7 +37,6 @@ namespace Airplane
             }
             else
             {
-                // автоматическая стрельба
                 foreach (WeaponScript weapon in _weapons)
                 {
                     if (weapon != null && weapon.enabled && weapon.CanAttack)
@@ -55,7 +53,6 @@ namespace Airplane
             }
         }
 
-        // 3 - Самоактивация.
         private void Spawn()
         {
             _hasSpawn = true;
